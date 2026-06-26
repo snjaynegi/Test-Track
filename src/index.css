@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Spectral:wght@400;500;600;700&display=swap");
+
+:root {
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --app-bg: #020617;
+  --app-text: #e2e8f0;
+  --app-text-muted: #94a3b8;
+  --app-border: rgba(255, 255, 255, 0.1);
+  --app-panel: rgba(2, 6, 23, 0.72);
+  --app-panel-strong: rgba(2, 6, 23, 0.84);
+  --app-panel-soft: rgba(2, 6, 23, 0.42);
+  --app-subtle: rgba(255, 255, 255, 0.05);
+  --app-subtle-strong: rgba(255, 255, 255, 0.1);
+  --app-shell-gradient: radial-gradient(circle at top left, rgba(34, 211, 238, 0.14), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(251, 191, 36, 0.12), transparent 20%),
+    linear-gradient(180deg, #020617 0%, #0f172a 100%);
+  --app-signin-gradient: radial-gradient(circle at top, rgba(34, 211, 238, 0.12), transparent 24%),
+    linear-gradient(180deg, #020617 0%, #0f172a 100%);
+  color: var(--app-text);
+  background: var(--app-bg);
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+  --app-bg: #eef4f8;
+  --app-text: #0f172a;
+  --app-text-muted: #475569;
+  --app-border: rgba(15, 23, 42, 0.1);
+  --app-panel: rgba(255, 255, 255, 0.78);
+  --app-panel-strong: rgba(255, 255, 255, 0.94);
+  --app-panel-soft: rgba(255, 255, 255, 0.55);
+  --app-subtle: rgba(15, 23, 42, 0.04);
+  --app-subtle-strong: rgba(15, 23, 42, 0.08);
+  --app-shell-gradient: radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.1), transparent 20%),
+    linear-gradient(180deg, #f7fbfd 0%, #e8f0f5 100%);
+  --app-signin-gradient: radial-gradient(circle at top, rgba(34, 211, 238, 0.1), transparent 24%),
+    linear-gradient(180deg, #f7fbfd 0%, #e8f0f5 100%);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--app-bg);
+  color: var(--app-text);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@layer base {
+  * {
+    @apply border-slate-700;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-serif {
+    font-family: "Spectral", Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .app-shell-bg {
+    background: var(--app-shell-gradient);
+    color: var(--app-text);
+  }
+
+  .signin-page-bg {
+    background: var(--app-signin-gradient);
+    color: var(--app-text);
+  }
+
+  .app-surface {
+    border-color: var(--app-border);
+    background: var(--app-panel);
+  }
+
+  .form-input {
+    @apply w-full rounded-2xl px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-cyan-300/20;
+    border: 1px solid var(--app-border);
+    background: var(--app-panel-strong);
+    color: var(--app-text);
+  }
+
+  .form-input::placeholder {
+    color: var(--app-text-muted);
+  }
+}
+
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-200,
+html.light .text-slate-300,
+html.light .text-slate-400,
+html.light .text-slate-500 {
+  color: #475569 !important;
+}
+
+html.light .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light .bg-white\/5 {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+
+html.light .bg-white\/10 {
+  background-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .bg-slate-950\/50,
+html.light .bg-slate-950\/60,
+html.light .bg-slate-950\/70,
+html.light .bg-slate-950\/75 {
+  background-color: rgba(255, 255, 255, 0.78) !important;
+}
+
+html.light .hover\:bg-white\/10:hover {
+  background-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .text-cyan-100,
+html.light .text-cyan-200,
+html.light .text-cyan-100\/70,
+html.light .text-cyan-200\/70,
+html.light .text-cyan-300\/70 {
+  color: #0e7490 !important;
+}
+
+html.light .text-emerald-100,
+html.light .text-emerald-200 {
+  color: #047857 !important;
+}
+
+html.light .text-amber-50,
+html.light .text-amber-100,
+html.light .text-amber-200 {
+  color: #92400e !important;
+}
+
+html.light .text-rose-100,
+html.light .text-rose-200,
+html.light .text-rose-300 {
+  color: #be123c !important;
+}
+
+html.light .bg-cyan-300\/10,
+html.light .bg-cyan-400\/10 {
+  background-color: rgba(14, 116, 144, 0.1) !important;
+}
+
+html.light .border-cyan-300\/20,
+html.light .border-cyan-400\/20 {
+  border-color: rgba(14, 116, 144, 0.28) !important;
+}
+
+html.light .bg-emerald-300\/10,
+html.light .bg-emerald-400\/10 {
+  background-color: rgba(4, 120, 87, 0.12) !important;
+}
+
+html.light .border-emerald-300\/20,
+html.light .border-emerald-400\/20 {
+  border-color: rgba(4, 120, 87, 0.28) !important;
+}
+
+html.light .bg-amber-300\/10,
+html.light .bg-amber-400\/10 {
+  background-color: rgba(146, 64, 14, 0.12) !important;
+}
+
+html.light .border-amber-300\/20 {
+  border-color: rgba(146, 64, 14, 0.28) !important;
+}
+
+html.light .bg-rose-400\/10 {
+  background-color: rgba(190, 18, 60, 0.12) !important;
+}
+
+html.light .border-rose-400\/20 {
+  border-color: rgba(190, 18, 60, 0.28) !important;
+}
