@@ -11,7 +11,6 @@ export default function Bugs({ data }: { data: BootstrapPayload }) {
   const [assets, setAssets] = useState<EvidenceAsset[]>(data.evidence);
   const [filter, setFilter] = useState("ALL");
   const [duplicateWarning, setDuplicateWarning] = useState<string | null>(null);
-  const isQaUser = canCreateBug(data.currentUser.role);
 
   const visibleBugs = useMemo(
     () => (filter === "ALL" ? bugItems : bugItems.filter((bug) => bug.status === filter)),
@@ -27,42 +26,17 @@ export default function Bugs({ data }: { data: BootstrapPayload }) {
   const hasProjects = data.projects.length > 0;
 
   return (
-    <div className={`grid gap-6 ${isQaUser ? "xl:grid-cols-[0.95fr_1.05fr]" : "xl:grid-cols-1"}`}>
-      {isQaUser ? (
-        <SectionCard title="Create Bug Record" eyebrow="Defect Workflow">
-          {!hasProjects ? (
-            <Empty />
-          ) : (
-            <>
-              {duplicateWarning ? <p className="mb-4 rounded-2xl border border-amber-300/20 bg-amber-300/10 px-4 py-3 text-sm text-amber-100">{duplicateWarning}</p> : null}
-              <BugComposer user={data.currentUser} projects={data.projects} modules={data.modules} assignees={data.users} existingBugs={bugItems} onCreateBug={handleCreateBug} />
-            </>
-          )}
-        </SectionCard>
-      ) : (
-        <SectionCard title="Bug Supervision Access" eyebrow="Manager View">
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-[24px] border border-cyan-300/20 bg-cyan-300/10 p-5">
-              <div className="flex items-center gap-3 text-cyan-100">
-                <Eye className="h-5 w-5" />
-                <h3 className="text-lg font-medium text-white">Read-only oversight</h3>
-              </div>
-              <p className="mt-3 text-sm text-slate-200">
-                Reporting Managers supervise QA activity, review bug evidence, monitor statuses, and track assignments, but cannot create bug records.
-              </p>
-            </div>
-            <div className="rounded-[24px] border border-emerald-300/20 bg-emerald-300/10 p-5">
-              <div className="flex items-center gap-3 text-emerald-100">
-                <ShieldCheck className="h-5 w-5" />
-                <h3 className="text-lg font-medium text-white">QA-owned reporting</h3>
-              </div>
-              <p className="mt-3 text-sm text-slate-200">
-                QA users remain responsible for creating bugs, uploading evidence, and maintaining defect records throughout the workflow.
-              </p>
-            </div>
-          </div>
-        </SectionCard>
-      )}
+    <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
+      <SectionCard title="Create Bug Record" eyebrow="Defect Workflow">
+        {!hasProjects ? (
+          <Empty />
+        ) : (
+          <>
+            {duplicateWarning ? <p className="mb-4 rounded-2xl border border-amber-300/20 bg-amber-300/10 px-4 py-3 text-sm text-amber-100">{duplicateWarning}</p> : null}
+            <BugComposer user={data.currentUser} projects={data.projects} modules={data.modules} assignees={data.users} existingBugs={bugItems} onCreateBug={handleCreateBug} />
+          </>
+        )}
+      </SectionCard>
 
       <div className="space-y-6">
         <SectionCard

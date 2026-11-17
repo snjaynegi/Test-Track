@@ -5,7 +5,7 @@ import type { BootstrapPayload } from "../../shared/demo-data";
 export default function Users({ data }: { data: BootstrapPayload }) {
   return (
     <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
-      <SectionCard title="User Access Matrix" eyebrow="RBAC Overview">
+      <SectionCard title="QA Team Directory" eyebrow="QA Access">
         <div className="space-y-4">
           {data.users.map((user) => (
             <div key={user.id} className="flex flex-col gap-3 rounded-[24px] border border-white/10 bg-white/5 p-4 md:flex-row md:items-center md:justify-between">
@@ -30,7 +30,7 @@ export default function Users({ data }: { data: BootstrapPayload }) {
       <SectionCard title="Security Controls" eyebrow="Validation & Audit">
         <div className="space-y-4 text-sm text-slate-300">
           {[
-            "Role-based route access prevents QA users from viewing unauthorized projects.",
+            "Unified QA access grants bug creation, evidence validation, and test management across all modules.",
             "Attachment workflows support image and video file filtering before submission.",
             "Duplicate detection warns when project title and environment collide with existing records.",
             "Report exports keep screenshots as clickable hyperlinks rather than embedded images.",

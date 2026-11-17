@@ -190,28 +190,14 @@ export async function getDbUsers() {
   return result.rows.map((row) => mapUser(row));
 }
 
-async function getVisibleProjectsForUser(user: User) {
+async function getVisibleProjectsForUser(_user: User) {
   const db = requireDb();
-  if (user.role === "REPORTING_MANAGER") {
-    const result = await db.query<DbProjectRow>(
-      `
-        select id, name, code, status, release, health, owner_id, summary
-        from projects
-        order by name asc
-      `,
-    );
-    return result.rows.map(mapProject);
-  }
-
   const result = await db.query<DbProjectRow>(
     `
-      select distinct p.id, p.name, p.code, p.status, p.release, p.health, p.owner_id, p.summary
-      from projects p
-      left join project_members pm on pm.project_id = p.id
-      where p.owner_id = $1 or pm.user_id = $1
-      order by p.name asc
+      select id, name, code, status, release, health, owner_id, summary
+      from projects
+      order by name asc
     `,
-    [user.id],
   );
   return result.rows.map(mapProject);
 }

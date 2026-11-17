@@ -9,6 +9,7 @@ import Dashboard from "@/pages/Dashboard";
 import Projects from "@/pages/Projects";
 import Reports from "@/pages/Reports";
 import SignIn from "@/pages/SignIn";
+import TestCases from "@/pages/TestCases";
 import Users from "@/pages/Users";
 
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard data={data} />} />
               <Route path="/projects" element={<Projects data={data} />} />
+              <Route path="/test-cases" element={<TestCases data={data} />} />
               <Route path="/bugs" element={<Bugs data={data} />} />
               <Route path="/reports" element={<Reports data={data} />} />
               <Route path="/analytics" element={<Analytics data={data} />} />

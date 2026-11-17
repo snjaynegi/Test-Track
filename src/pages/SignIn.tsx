@@ -4,16 +4,11 @@ import { ArrowRight, DatabaseZap, Moon, Shield, Sun } from "lucide-react";
 import { useAppStore } from "@/hooks/useAppStore";
 import { useTheme } from "@/hooks/useTheme";
 
-const demoUsers = [
-  { label: "Reporting Manager", email: "manager@demo.local" },
-  { label: "QA User", email: "qa@demo.local" },
-];
-
 export default function SignIn() {
   const navigate = useNavigate();
   const { setSession } = useAppStore();
   const { theme, toggleTheme } = useTheme();
-  const [email, setEmail] = useState(demoUsers[0].email);
+  const [email, setEmail] = useState("qa@demo.local");
   const [password, setPassword] = useState("demo123");
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -66,34 +61,21 @@ export default function SignIn() {
           <div className="mt-6 flex justify-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs uppercase tracking-[0.3em] text-emerald-100">
               <Shield className="h-4 w-4" />
-              Authentication Pending
+              QA Engineer Access
             </div>
           </div>
 
           <div className="mt-8 text-center">
-            <h1 className="font-serif text-4xl text-white">Sign in</h1>
+            <h1 className="font-serif text-4xl text-white">QA Portal Sign In</h1>
             <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-slate-400">
-              Use a demo Reporting Manager or QA account to explore the application while projects, bugs, and reports remain empty.
+              Dedicated QA testing workspace for executing test suites, verifying mobile modules, and logging defect evidence.
             </p>
-          </div>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {demoUsers.map((user) => (
-              <button
-                key={user.email}
-                type="button"
-                onClick={() => setEmail(user.email)}
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200 transition hover:bg-white/10"
-              >
-                {user.label}
-              </button>
-            ))}
           </div>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <label className="block">
-              <span className="mb-2 block text-sm text-slate-300">Email</span>
-              <input className="form-input" placeholder="name@company.com" value={email} onChange={(event) => setEmail(event.target.value)} />
+              <span className="mb-2 block text-sm text-slate-300">QA Email</span>
+              <input className="form-input" placeholder="qa@company.com" value={email} onChange={(event) => setEmail(event.target.value)} />
             </label>
             <label className="block">
               <span className="mb-2 block text-sm text-slate-300">Password</span>
@@ -106,7 +88,7 @@ export default function SignIn() {
               disabled={isSubmitting}
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200 disabled:opacity-70"
             >
-              Sign In
+              Enter QA Portal
               <ArrowRight className="h-4 w-4" />
             </button>
           </form>
@@ -114,10 +96,10 @@ export default function SignIn() {
           <div className="mt-8 rounded-[28px] border border-cyan-300/20 bg-cyan-300/10 p-5">
             <div className="flex items-center gap-3 text-cyan-100">
               <DatabaseZap className="h-5 w-5" />
-              <p className="font-medium text-white">Demo credentials</p>
+              <p className="font-medium text-white">QA Credentials</p>
             </div>
             <p className="mt-3 text-sm leading-6 text-slate-200">
-              Use `manager@demo.local` or `qa@demo.local` with password `demo123`.
+              Use <code className="rounded bg-black/30 px-1.5 py-0.5 text-cyan-200">qa@demo.local</code> with password <code className="rounded bg-black/30 px-1.5 py-0.5 text-cyan-200">demo123</code>.
             </p>
           </div>
         </section>

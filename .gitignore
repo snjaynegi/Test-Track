@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 .vite
+
+# Data & Spreadsheets
+*.xlsx
+*.xls
+*.csv

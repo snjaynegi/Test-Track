@@ -6,7 +6,7 @@ describe("bug creation permissions", () => {
     expect(canCreateBug("QA_USER")).toBe(true);
   });
 
-  it("prevents reporting managers from creating bug reports", () => {
-    expect(canCreateBug("REPORTING_MANAGER")).toBe(false);
+  it("permits all authenticated QA sessions to report bugs", () => {
+    expect(canCreateBug()).toBe(true);
   });
 });

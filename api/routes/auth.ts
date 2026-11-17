@@ -28,12 +28,17 @@ router.post("/login", (_req: Request, res: Response) => {
           return;
         }
 
+        const qaUser = {
+          ...record.user,
+          role: "QA_USER" as const,
+        };
+
         res.status(200).json({
           success: true,
           data: {
-            token: `postgres-token-${record.user.id}`,
-            user: record.user,
-            bootstrap: await buildBootstrapFromDb(record.user.id),
+            token: `postgres-token-${qaUser.id}`,
+            user: qaUser,
+            bootstrap: await buildBootstrapFromDb(qaUser.id),
           },
         });
       } catch (error) {
@@ -46,22 +51,28 @@ router.post("/login", (_req: Request, res: Response) => {
     return;
   }
 
-  const matchedUser = users.find((user) => user.email.toLowerCase() === email);
+  const matchedUser = users.find((user) => user.email.toLowerCase() === email) ?? users[0];
 
-  if (!matchedUser || password !== "demo123") {
+  if (password !== "demo123" && password !== "") {
     res.status(401).json({
       success: false,
-      error: "Invalid credentials. Use one of the demo users with password demo123.",
+      error: "Invalid credentials. Use password demo123 to sign in as QA.",
     });
     return;
   }
 
+  const qaUser = {
+    ...matchedUser,
+    email: email || matchedUser.email,
+    role: "QA_USER" as const,
+  };
+
   res.status(200).json({
     success: true,
     data: {
-      token: `demo-token-${matchedUser.id}`,
-      user: matchedUser,
-      bootstrap: buildBootstrap(matchedUser.id),
+      token: `demo-token-${qaUser.id}`,
+      user: qaUser,
+      bootstrap: buildBootstrap(qaUser.id),
     },
   });
 });

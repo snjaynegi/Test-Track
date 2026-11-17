@@ -1,5 +1,6 @@
 import type { UserRole } from "./demo-data";
 
-export function canCreateBug(role: UserRole) {
-  return role === "QA_USER";
+export function canCreateBug(_role?: UserRole | string) {
+  // Portal is dedicated to QA; all authenticated users have bug creation privileges
+  return true;
 }
